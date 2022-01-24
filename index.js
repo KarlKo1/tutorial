@@ -43,8 +43,8 @@ app.post('/games', (req, res) => {
         .send(game)
 })
 
-app.listen(8080, () => {
-    console.log(`API up at: http://localhost:8080`)
+app.listen(port, () => {
+    console.log(`API up at: http://localhost:${port}`)
 })
 
 function getBaseUrl(req) {
