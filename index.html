@@ -29,9 +29,18 @@
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped">
-                        <tr><th>ID</th><td>{{gameInModal.id}}</td></tr>
-                        <tr><th>Name</th><td>{{gameInModal.name}}</td></tr>
-                        <tr><th>Price</th><td>{{gameInModal.price}}</td></tr>
+                        <tr>
+                            <th>ID</th>
+                            <td>{{ gameInModal.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ gameInModal.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ gameInModal.price }}</td>
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -46,10 +55,7 @@
 <script>
     const vue = Vue.createApp({
         data() {
-            return {
-                gameInModal: {name: null},
-                games: []
-            }
+            return {gameInModal: {name: null}, games: []}
         },
         async created() {
             this.games = await (await fetch('http://localhost:8080/games')).json();
