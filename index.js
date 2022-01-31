@@ -1,9 +1,7 @@
 const express = require('express')
-const cors = require('cors')
 const app = express()
 const port = 8080
 
-app.use(cors())
 app.use(express.json())
 
 const games = [
@@ -31,31 +29,17 @@ app.get('/games/:id', (req, res) => {
 
 app.post('/games', (req, res) => {
 
-    let game = {
+    games.push({
         id: games.length + 1,
         price: req.body.price,
         name: req.body.name
-    }
-
-    games.push(game)
-
-    res.status(201)
-        .location(`${getBaseUrl(req)}/games/${games.length}`)
-        .send(game)
 })
 
-app.delete('/games/:id', (req, res) => {
-    if (typeof games[req.params.id - 1] === 'undefined') {
-        return res.status(404).send({error: "Game not found"})
-    }
+    res.end()
+})
 
-    games.splice(req.params.id - 1, 1)
-
-    res.status(204).send({error: "No Content"})
-});
-
-app.listen(port, () => {
-    console.log(`API up at: http://localhost:${port}`)
+app.listen(8080, () => {
+    console.log(`API up at: http://localhost:8080`)
 })
 
 function getBaseUrl(req) {
